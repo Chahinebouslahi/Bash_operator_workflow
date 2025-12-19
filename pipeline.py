@@ -12,3 +12,12 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=1),
 }
+
+# DAG definition
+dag = DAG(
+    dag_id='final_project_data_pipeline',
+    default_args=default_args,
+    description='Final project ETL pipeline',
+    schedule_interval=None,
+    catchup=False
+)
