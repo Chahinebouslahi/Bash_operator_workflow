@@ -40,3 +40,12 @@ extract_data_from_csv = BashOperator(
     ''',
     dag=dag
 )
+
+# Extract data from TSV file
+extract_data_from_tsv = BashOperator(
+    task_id='extract_data_from_tsv',
+    bash_command='''
+    cut -f1,3 /tmp/data/source_data.tsv > /tmp/data/tsv_data.csv
+    ''',
+    dag=dag
+)
