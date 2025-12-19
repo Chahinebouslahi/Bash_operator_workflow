@@ -58,3 +58,17 @@ extract_data_from_fixed_width = BashOperator(
     ''',
     dag=dag
 )
+
+
+
+# Combine all extracted data
+consolidate_data = BashOperator(
+    task_id='consolidate_data',
+    bash_command='''
+    paste /tmp/data/csv_data.csv \
+          /tmp/data/tsv_data.csv \
+          /tmp/data/fixed_width_data.csv \
+          > /tmp/data/consolidated_data.csv
+    ''',
+    dag=dag
+)
