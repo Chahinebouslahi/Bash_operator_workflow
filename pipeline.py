@@ -49,3 +49,12 @@ extract_data_from_tsv = BashOperator(
     ''',
     dag=dag
 )
+
+# Extract data from fixed width file
+extract_data_from_fixed_width = BashOperator(
+    task_id='extract_data_from_fixed_width',
+    bash_command='''
+    cut -c1-5,10-14 /tmp/data/source_data_fixed_width.txt > /tmp/data/fixed_width_data.csv
+    ''',
+    dag=dag
+)
