@@ -31,3 +31,12 @@ unzip_data = BashOperator(
     ''',
     dag=dag
 )
+
+# Extract data from CSV 
+extract_data_from_csv = BashOperator(
+    task_id='extract_data_from_csv',
+    bash_command='''
+    cut -d"," -f1,2 /tmp/data/source_data.csv > /tmp/data/csv_data.csv
+    ''',
+    dag=dag
+)
