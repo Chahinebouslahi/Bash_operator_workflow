@@ -72,3 +72,12 @@ consolidate_data = BashOperator(
     ''',
     dag=dag
 )
+
+# Transform data to uppercase
+transform_data = BashOperator(
+    task_id='transform_data',
+    bash_command='''
+    tr '[:lower:]' '[:upper:]' < /tmp/data/consolidated_data.csv > /tmp/data/final_data.csv
+    ''',
+    dag=dag
+)
