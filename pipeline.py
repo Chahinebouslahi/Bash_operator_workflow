@@ -21,3 +21,13 @@ dag = DAG(
     schedule_interval=None,
     catchup=False
 )
+
+# Unzip source data
+unzip_data = BashOperator(
+    task_id='unzip_data',
+    bash_command='''
+    mkdir -p /tmp/data &&
+    tar -xvf /tmp/data/source_data.tar -C /tmp/data
+    ''',
+    dag=dag
+)
